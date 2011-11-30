@@ -10,6 +10,6 @@ I hacked this up after I realized that Backpack won't let me download my own upl
     cd backpack_to_gollum
     bundle install
     # Download the export.xml from <your-account>.backpackit.com/account/exports
-    bundle exec ruby backpack_to_gollum.rb
+    ruby backpack_to_gollum.rb
     cd notes
     gollum
