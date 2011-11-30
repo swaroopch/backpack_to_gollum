@@ -86,7 +86,7 @@ input['pages'][0]['page'].each do |page|
   filename = title_to_filename(page['title'])
   pages[page['title']] = filename
 
-  File.open(File.join(OUTPUT_DIR, filename + ".md"), "w") do |file|
+  File.open(File.join(OUTPUT_DIR, "#{filename}.md"), "w") do |file|
     file << %Q{
 # #{page['title']}
 }
@@ -100,8 +100,9 @@ end
 File.open(File.join(OUTPUT_DIR, 'Home.md'), "w") do |file|
   pages.keys.sort.each do |page_name|
     page_file = pages[page_name]
-    file << %Q{ * [[#{page_file}]]
+    template = %Q{ * [[<%= page_file %>]]
 }
+    file << ERB.new(template).result(binding)
   end
 end
 
